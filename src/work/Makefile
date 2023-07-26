@@ -37,6 +37,6 @@ $(tgt_dir)/pp.html: pp.md
 $(tgt_dir)/resume.html: resume.html
 	cp resume.html $(tgt_dir)/resume.html
 
-$(tgt_dir)/snetl.html: snetl.html
-	cp snetl.html $(tgt_dir)/snetl.html
+$(tgt_dir)/snetl.html: snetl.md
+	pandoc --template=$(html_template) -o $(tgt_dir)/snetl.html snetl.md
 
