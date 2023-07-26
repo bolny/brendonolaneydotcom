@@ -18,8 +18,8 @@ clean:
 $(tgt_dir)/ae.html: ae.md
 	pandoc --template=$(html_template) -o $(tgt_dir)/ae.html ae.md
 
-$(tgt_dir)/fd.html: fd.html
-	cp fd.html $(tgt_dir)/fd.html
+$(tgt_dir)/fd.html: fd.md
+	pandoc --template=$(html_template) -o $(tgt_dir)/fd.html fd.md
 
 $(tgt_dir)/index.html: index.html
 	cp index.html $(tgt_dir)/index.html
