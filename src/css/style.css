@@ -117,3 +117,6 @@ td {
   margin-top: 4em;
   text-align: center;
 }
+figcaption {
+  text-align: center;
+}
