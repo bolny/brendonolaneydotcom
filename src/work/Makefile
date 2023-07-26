@@ -29,7 +29,7 @@ $(tgt_dir)/ipr.html: ipr.md
 	pandoc --template=$(html_template) -o $(tgt_dir)/ipr.html ipr.md
 
 $(tgt_dir)/loc.html: loc.html
-	cp loc.html $(tgt_dir)/loc.html
+	pandoc --template=$(html_template) -o $(tgt_dir)/loc.html loc.md
 
 $(tgt_dir)/pp.html: pp.html
 	cp pp.html $(tgt_dir)/pp.html
