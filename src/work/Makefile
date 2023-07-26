@@ -1,16 +1,22 @@
-tgt_dir:=../../www/work
-static := $(tgt_dir)/ae.html $(tgt_dir)/fd.html $(tgt_dir)/index.html $(tgt_dir)/ipr.html $(tgt_dir)/loc.html $(tgt_dir)/pp.html $(tgt_dir)/resume.html $(tgt_dir)/snetl.html
+tgt_dir := ../../www/work
+html_template := ./template.html
+
+static := $(tgt_dir)/ae.html \
+	$(tgt_dir)/fd.html \
+	$(tgt_dir)/index.html \
+	$(tgt_dir)/ipr.html \
+	$(tgt_dir)/loc.html \
+	$(tgt_dir)/pp.html \
+	$(tgt_dir)/resume.html \
+	$(tgt_dir)/snetl.html \
 
 all: $(static)
 
 clean:
 	rm -f $(tgt_dir)/*
 
-$(tgt_dir)/favicon.ico: favicon.ico
-	cp favicon.ico $(tgt_dir)/favicon.ico
-
-$(tgt_dir)/ae.html: ae.html
-	cp ae.html $(tgt_dir)/ae.html
+$(tgt_dir)/ae.html: ae.md
+	pandoc --template=$(html_template) -o $(tgt_dir)/ae.html ae.md
 
 $(tgt_dir)/fd.html: fd.html
 	cp fd.html $(tgt_dir)/fd.html
