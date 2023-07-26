@@ -1,11 +1,13 @@
 tgt_dir := ../www
 html_template := ./template.html
+
 static := $(tgt_dir)/favicon.ico \
 	$(tgt_dir)/robots.txt \
-	$(tgt_dir)/index.html
+	$(tgt_dir)/index.html\
+
 dir := $(tgt_dir)/css \
 	$(tgt_dir)/img \
-	$(tgt_dir)/work
+	$(tgt_dir)/work \
 
 all: $(static) $(dir)
 
