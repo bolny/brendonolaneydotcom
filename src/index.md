@@ -28,7 +28,7 @@ electronics I have a keen interest in it.
 
 ## My Work
 
-I am a senior software developer. [Read more.][3]
+I am a senior software engineer. [Read more.][3]
 
 ## Contact
 
