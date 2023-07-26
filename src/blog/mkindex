@@ -1,0 +1,18 @@
+#! /bin/sh
+
+cat << END > index.md
+---
+title: Index
+---
+
+END
+
+for entry in *.md
+do
+	if [ "${entry}" = "index.md" ]
+	then
+		continue
+	fi
+	title=$(grep -i 'title:' "$entry" | head -1 | sed 's/title: \(.*\)/\1/')
+	echo "- [${title}](./${entry%\.md}.html)" >> index.md
+done

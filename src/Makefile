@@ -8,6 +8,7 @@ static := $(tgt_dir)/favicon.ico \
 dir := $(tgt_dir)/css \
 	$(tgt_dir)/img \
 	$(tgt_dir)/work \
+	$(tgt_dir)/blog \
 
 all: $(static) $(dir)
 
@@ -34,3 +35,7 @@ $(tgt_dir)/img:
 $(tgt_dir)/work:
 	mkdir -p $(tgt_dir)/work
 	make -C ./work
+
+$(tgt_dir)/blog:
+	mkdir -p $(tgt_dir)/blog
+	make -C ./blog

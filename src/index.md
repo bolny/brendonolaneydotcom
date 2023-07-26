@@ -26,6 +26,10 @@ program the VCR to building applications at scale, if it involves
 electronics I have a keen interest in it.
 ::::
 
+## Blog
+
+New! I made a [blog][8]!
+
 ## My Work
 
 I am a senior software engineer. [Read more.][3]
@@ -50,4 +54,5 @@ see someone claiming to be me and it's not linked here it's not me!
 [5]: https://www.instagram.com/brendonolaney/ {.u-url}
 [6]: https://www.linkedin.com/in/bolny/ {.u-url}
 [7]: https://github.com/bolny {.u-url}
+[8]: /blog/index.html
 
