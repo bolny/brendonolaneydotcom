@@ -28,11 +28,11 @@ $(tgt_dir)/index.html: index.md
 $(tgt_dir)/ipr.html: ipr.md
 	pandoc --template=$(html_template) -o $(tgt_dir)/ipr.html ipr.md
 
-$(tgt_dir)/loc.html: loc.html
+$(tgt_dir)/loc.html: loc.md
 	pandoc --template=$(html_template) -o $(tgt_dir)/loc.html loc.md
 
-$(tgt_dir)/pp.html: pp.html
-	cp pp.html $(tgt_dir)/pp.html
+$(tgt_dir)/pp.html: pp.md
+	pandoc --template=$(html_template) -o $(tgt_dir)/pp.html pp.md
 
 $(tgt_dir)/resume.html: resume.html
 	cp resume.html $(tgt_dir)/resume.html
