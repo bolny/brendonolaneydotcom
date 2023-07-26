@@ -1,6 +1,11 @@
-tgt_dir:=../www
-static := $(tgt_dir)/favicon.ico $(tgt_dir)/robots.txt $(tgt_dir)/index.html
-dir := $(tgt_dir)/css $(tgt_dir)/img $(tgt_dir)/work
+tgt_dir := ../www
+html_template := ./template.html
+static := $(tgt_dir)/favicon.ico \
+	$(tgt_dir)/robots.txt \
+	$(tgt_dir)/index.html
+dir := $(tgt_dir)/css \
+	$(tgt_dir)/img \
+	$(tgt_dir)/work
 
 all: $(static) $(dir)
 
@@ -13,8 +18,8 @@ $(tgt_dir)/favicon.ico: favicon.ico
 $(tgt_dir)/robots.txt: robots.txt
 	cp robots.txt $(tgt_dir)/robots.txt
 
-$(tgt_dir)/index.html: index.html
-	cp index.html $(tgt_dir)/index.html
+$(tgt_dir)/index.html: index.md
+	pandoc --template=$(html_template) -o $(tgt_dir)/index.html index.md
 
 $(tgt_dir)/css:
 	mkdir -p $(tgt_dir)/css
