@@ -45,7 +45,8 @@ do
 	else
 		out_date=$(echo \
 			"${in_date}" | \
-			xargs -I \# date -j -f "%Y-%m-%d" \# -R)
+			xargs -I \# date --date="#" -R)
+https://www.languagetool.org/
 	fi
 
 	description=$(pandoc -t plain "${entry}")
