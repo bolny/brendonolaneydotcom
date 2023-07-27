@@ -1,18 +1,38 @@
 #! /bin/sh
 
-cat << END > index.md
+cat << HEAD > index.md
 ---
-title: Index
+title: Brendon O'Laney
 ---
 
-END
+::: {.header}
 
-for entry in *.md
+# Brendon O'Laney
+
+## Index
+
+:::
+
+HEAD
+
+#shellcheck disable=SC2035,SC2045
+for entry in $(ls -r *.md)
 do
 	if [ "${entry}" = "index.md" ]
 	then
 		continue
 	fi
 	title=$(grep -i 'title:' "$entry" | head -1 | sed 's/title: \(.*\)/\1/')
-	echo "- [${title}](./${entry%\.md}.html)" >> index.md
+	date="${entry%\.md}"
+	echo "- [${title}](./${entry%\.md}.html) (${date})" >> index.md
 done
+
+cat << END >> index.md
+
+::: {.footer}
+
+[Back](../index.html)
+[RSS](./rss.xml)
+
+:::
+END
