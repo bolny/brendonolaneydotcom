@@ -25,6 +25,7 @@ body {
 }
 p {
   margin: 1em 0;
+  text-indent: 2em;
 }
 a {
   color: #1a1a1a;
