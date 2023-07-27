@@ -28,13 +28,26 @@ do
 		continue
 	fi
 
+	system=$(uname)
+
 	title=$(grep -i 'title:' "$entry" | \
 		head -1 | \
 		sed 's/title: \(.*\)/\1/')
-	date=$(grep -i 'date:' "$entry" | \
+	in_date=$(grep -i 'date:' "$entry" | \
 		head -1 | \
-		sed 's/date: \(.*\)/\1/' | \
-		xargs -J \# date -j -f "%Y-%m-%d" \# -R)
+		sed 's/date: \(.*\)/\1/') 
+
+	if [ "${system}" = "Darwin" ]
+	then
+		out_date=$(echo \
+			"${in_date}" | \
+			xargs -J \# date -j -f "%Y-%m-%d" \# -R)
+	else
+		out_date=$(echo \
+			"${in_date}" | \
+			xargs -I \# date -j -f "%Y-%m-%d" \# -R)
+	fi
+
 	description=$(pandoc -t plain "${entry}")
 
 	cat <<- ITEM >> rss.xml
@@ -45,7 +58,7 @@ do
 		<link>
 			https://brendonolaney.com/blog/${entry%\.md}.html
 		</link>
-		<pubdate>${date}</pubdate>
+		<pubdate>${out_date}</pubdate>
 		<title>${title}</title>
 		<description><![CDATA[
 			$description
