@@ -1,4 +1,4 @@
-- Build diagram images from source
-  - Requires plantuml or mermaid
-- Group blog post images into blog/ ???
-- microformats for blog
+- [X] Build diagram images from source
+- [ ] Group blog post images into blog dir (maybe?)
+- [ ] microformats for blog
+- [ ] fix RSS descriptions
