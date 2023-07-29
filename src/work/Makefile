@@ -17,4 +17,4 @@ $(tgt_dir)/index.html:
 	pandoc --template=$(base_template) -o $(tgt_dir)/index.html index.md
 
 $(tgt_dir)/%.html:
-	pandoc --template=$(work_template) -o $(tgt_dir)/ae.html ae.md
+	pandoc --template=$(work_template) -o $(tgt_dir)/$*.html $*.md
