@@ -1,11 +1,12 @@
 tgt_dir:=../../www/css
-static := $(tgt_dir)/style.css
 
-all: $(static)
+all: $(tgt_dir)/ $(tgt_dir)/style.css
 
 clean:
-	rm -f $(tgt_dir)/*
+	rm -rf $(tgt_dir)/
 
-$(tgt_dir)/style.css: style.css
+$(tgt_dir)/:
+	mkdir -p $(tgt_dir)
+
+$(tgt_dir)/style.css: ./style.css
 	cp style.css $(tgt_dir)/style.css
-

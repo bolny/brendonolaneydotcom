@@ -1,41 +1,44 @@
 tgt_dir := ../www
-html_template := ./template.html
+template := ./template.html
 
 static := $(tgt_dir)/favicon.ico \
 	$(tgt_dir)/robots.txt \
-	$(tgt_dir)/index.html\
+	$(tgt_dir)/index.html \
 
 dir := $(tgt_dir)/css \
 	$(tgt_dir)/img \
 	$(tgt_dir)/work \
 	$(tgt_dir)/blog \
 
-all: $(static) $(dir)
+all: $(tgt_dir)/ $(static) $(dir)
 
 clean:
-	rm -f $(tgt_dir)/*
+	make -C ./css clean
+	make -C ./img clean
+	make -C ./work clean
+	make -C ./blog clean
+	rm -rf $(tgt_dir)/
 
-$(tgt_dir)/favicon.ico: favicon.ico
+$(tgt_dir)/:
+	mkdir -p $(tgt_dir)
+
+$(tgt_dir)/favicon.ico:
 	cp favicon.ico $(tgt_dir)/favicon.ico
 
-$(tgt_dir)/robots.txt: robots.txt
+$(tgt_dir)/robots.txt:
 	cp robots.txt $(tgt_dir)/robots.txt
 
-$(tgt_dir)/index.html: index.md
-	pandoc --template=$(html_template) -o $(tgt_dir)/index.html index.md
+$(tgt_dir)/index.html:
+	pandoc --template=$(template) -o $(tgt_dir)/index.html index.md
 
 $(tgt_dir)/css:
-	mkdir -p $(tgt_dir)/css
 	make -C ./css
 
 $(tgt_dir)/img:
-	mkdir -p $(tgt_dir)/img
 	make -C ./img
 
 $(tgt_dir)/work:
-	mkdir -p $(tgt_dir)/work
 	make -C ./work
 
 $(tgt_dir)/blog:
-	mkdir -p $(tgt_dir)/blog
 	make -C ./blog
