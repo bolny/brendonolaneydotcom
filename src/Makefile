@@ -9,6 +9,7 @@ dir := $(tgt_dir)/css \
 	$(tgt_dir)/img \
 	$(tgt_dir)/work \
 	$(tgt_dir)/blog \
+	$(tgt_dir)/font \
 
 all: $(tgt_dir)/ $(static) $(dir)
 
@@ -17,6 +18,7 @@ clean:
 	make -C ./img clean
 	make -C ./work clean
 	make -C ./blog clean
+	make -C ./font clean
 	rm -rf $(tgt_dir)/
 
 $(tgt_dir)/:
@@ -42,3 +44,6 @@ $(tgt_dir)/work:
 
 $(tgt_dir)/blog:
 	make -C ./blog
+
+$(tgt_dir)/font:
+	make -C ./font

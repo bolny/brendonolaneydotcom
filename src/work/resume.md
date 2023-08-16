@@ -1,5 +1,5 @@
 ---
-title: Brendon O'Laney
+title: Brendon O’Laney
 subtitle: Resume
 ---
 <brendon@brendonolaney.com>\
@@ -40,7 +40,7 @@ April 2022 - December 2022\
 
 Clir empowers investors and asset managers to maximize performance
 incentivizing the shift away from fossil fuels by improving the economics of
-renewable energy projects.  They do this by combining the industry's largest
+renewable energy projects.  They do this by combining the industry’s largest
 dataset with powerful software, data and analytics built, designed and supported
 by decades of renewable energy intelligence.
 
@@ -72,7 +72,7 @@ January 2019 - March 2022\
 
 Clio is the undisputed leader in legal practice management and client intake
 software with more than 800 five-star reviews on Capterra.  Over 150,000 legal
-professionals in 100+ countries trust Clio's legal software to help manage and
+professionals in 100+ countries trust Clio’s legal software to help manage and
 grow their law firm.  70+ bar associations approve Clio to their members, and
 Clio has been adopted by more than 150 law schools.
 
@@ -83,7 +83,7 @@ applications to interact with one or more payments processors (Stripe, Square,
 etc.).  It provides a single interface for creating, and managing things like
 charges, refunds, scheduled individual and recurring payments, managing fees,
 scheduling and handling payouts, customer onboarding, and more.  If some of
-these features aren't provided by the processor, the payments platform provides
+these features aren’t provided by the processor, the payments platform provides
 them directly .
 
 As a senior developer, I played a leadership role in driving the project to
@@ -188,7 +188,7 @@ running in their area, join a campaign, review a product, and share that review
 on social media websites.
 
 - Developed a store locator to help members find the closest location for their
-  product in C#, JavaScript and Foundation.  The locator can be plugged into 
+  product in C#, JavaScript and Foundation.  The locator can be plugged into
   any mapping api such as Google Maps, Apple Maps, or Nokia HERE.
 
 - Developed an all new redesigned user on-boarding flow using assets from a

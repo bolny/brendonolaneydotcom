@@ -1,5 +1,5 @@
 ---
-title: Brendon O'Laney
+title: Brendon O’Laney
 subtitle: Firm Dashboard
 ---
 

@@ -1,9 +1,9 @@
 ---
-title: Brendon O'Laney
+title: Brendon O’Laney
 ---
 
 ::: {.header}
-# Brendon O'Laney
+# Brendon O’Laney
 
 ## My Work
 :::
@@ -16,7 +16,7 @@ title: Brendon O'Laney
 
 ##### Payments Platform
 
-An abstraction layer for interacting with payments processors. 
+An abstraction layer for interacting with payments processors.
 
 [More.](./pp.html)
 

@@ -1,8 +1,8 @@
 ---
-title: Brendon O'Laney
+title: Brendon O’Laney
 subtitle: Invoice Payments Report
 ---
-      
+
 The invoice payments report rewrite was one of the first team projects that I
 led as a developer at Clio.
 

@@ -1,16 +1,16 @@
 ---
-title: Brendon O'Laney
+title: Brendon O’Laney
 ---
 
 ::: {.h-card}
 :::: {.header}
 ::::: {.p-name}
 
-# [Brendon O'Laney][1] 
+# [Brendon O’Laney][1]
 
 :::::
 
-[![Average height, pale skin, red hair and beard, at a beach on a gloomy day with camera.](https://www.brendonolaney.com/img/brendon.jpg){.u-photo}][2]\ 
+[![Average height, pale skin, red hair and beard, at a beach on a gloomy day with camera.](https://www.brendonolaney.com/img/brendon.jpg){.u-photo}][2]\
 
 ::::
 
@@ -38,7 +38,7 @@ I am a senior software engineer. [Read more.][3]
 
 
 I have created an Instagram account in case you want to see my cat. If you
-see someone claiming to be me and it's not linked here it's not me!
+see someone claiming to be me and it’s not linked here it’s not me!
 
 - [Email][4]
 - [Instagram][5]

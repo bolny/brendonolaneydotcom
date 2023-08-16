@@ -1,5 +1,5 @@
 ---
-title: Brendon O'Laney
+title: Brendon O’Laney
 subtitle: Payments Platform
 ---
 
@@ -8,7 +8,7 @@ applications to interact with one or more payments processors (Stripe, Paypal,
 etc.). It provides a single interface for creating, and managing things like
 charges, refunds, scheduled individual and recurring payments, managing fees,
 scheduling and handling payouts, customer onboarding, and more. If some of these
-features aren't provided by the processor, the payments platform provides them
+features aren’t provided by the processor, the payments platform provides them
 directly.
 
 [News Release][1]
