@@ -1,4 +1,5 @@
 .DS_Store
+.nova
 www
 src/blog/index.md
 src/blog/index.html
