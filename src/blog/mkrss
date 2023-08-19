@@ -12,7 +12,7 @@ cat <<- HEAD > rss.xml
 	type="application/rss+xml"
 />
 <title>Brendon O'Laney</title>
-<description>Index</description> 
+<description>Index</description>
 <link>https://brendonolaney.com/blog</link>
 <lastBuildDate>${build_date}</lastBuildDate>
 <managingEditor>
@@ -35,7 +35,7 @@ do
 		sed 's/title: \(.*\)/\1/')
 	in_date=$(grep -i 'date:' "$entry" | \
 		head -1 | \
-		sed 's/date: \(.*\)/\1/') 
+		sed 's/date: \(.*\)/\1/')
 
 	if [ "${system}" = "Darwin" ]
 	then
@@ -48,7 +48,7 @@ do
 			xargs -I \# date --date="#" -R)
 	fi
 
-	description=$(pandoc -t plain "${entry}")
+	description=$(pandoc -t html "${entry}")
 
 	cat <<- ITEM >> rss.xml
 	<item>
