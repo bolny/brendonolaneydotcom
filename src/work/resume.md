@@ -1,6 +1,5 @@
 ---
-title: Brendon O’Laney
-subtitle: Resume
+title: Brendon O'Laney
 ---
 <brendon@brendonolaney.com>\
 <https://www.brendonolaney.com/>\
@@ -16,10 +15,12 @@ requirement gathering, agile development, and delivery.
 ## Technical Summary
 
 - **Software**: AWS, Terrform, Docker, Ruby on Rails, Dotnet Core, ASP.NET MVC
-  Core, jQuery, Angular 1, Underscore, Backbone JS, D3, Foundation, Django, Vim,
-  Visual Studio Code, JetBrains IDEA, Git, SVN
+  Core, jQuery, Angular 1, NodeJS, Underscore, Backbone JS, D3, Foundation,
+  Django, Vim, Visual Studio Code, JetBrains IDEA, Git, SVN
 - **Languages**: Go, Ruby, Typescript, C#, Python, JavaScript, SQL, C, Bash,
   HTML5, CSS3
+- **Testing Frameworks**: Nose, Unittest (Python), pytest, XUnit, NUnit, Moq,
+  RSpec, Jasmine, Cypress, Testing (Golang), Testify
 - **Project Management Tools**: Github, Jira, BitBucket, Mantis, Crucible,
   Jenkins
 - **Databases**: MySQL, PostgreSQL, MariaDB
@@ -40,7 +41,7 @@ April 2022 - December 2022\
 
 Clir empowers investors and asset managers to maximize performance
 incentivizing the shift away from fossil fuels by improving the economics of
-renewable energy projects.  They do this by combining the industry’s largest
+renewable energy projects.  They do this by combining the industry's largest
 dataset with powerful software, data and analytics built, designed and supported
 by decades of renewable energy intelligence.
 
@@ -63,7 +64,8 @@ Finally I broke down the work into bite size pieces of work so that any junior
 or intermediate developer would be able to quickly gain context and execute on
 the development plan.
 
-**Technologies Used**: UML, Go, Terraform, PostgreSQL, Docker, AWS.
+**Technologies Used**: UML, Go, Terraform, PostgreSQL, Docker, AWS, Testing,
+Testify.
 
 ### Clio
 
@@ -72,7 +74,7 @@ January 2019 - March 2022\
 
 Clio is the undisputed leader in legal practice management and client intake
 software with more than 800 five-star reviews on Capterra.  Over 150,000 legal
-professionals in 100+ countries trust Clio’s legal software to help manage and
+professionals in 100+ countries trust Clio's legal software to help manage and
 grow their law firm.  70+ bar associations approve Clio to their members, and
 Clio has been adopted by more than 150 law schools.
 
@@ -83,7 +85,7 @@ applications to interact with one or more payments processors (Stripe, Square,
 etc.).  It provides a single interface for creating, and managing things like
 charges, refunds, scheduled individual and recurring payments, managing fees,
 scheduling and handling payouts, customer onboarding, and more.  If some of
-these features aren’t provided by the processor, the payments platform provides
+these features aren't provided by the processor, the payments platform provides
 them directly .
 
 As a senior developer, I played a leadership role in driving the project to
@@ -97,7 +99,7 @@ the payments platform was dealing with request idempotency and race conditions
 that can emerge when processing delays can result in a synchronous and
 asynchronous process occurring at the same time.
 
-**Technologies Used**: Ruby on Rails, Typescript.
+**Technologies Used**: Ruby on Rails, Typescript, RSpec, Cypress, Jasmine.
 
 #### Project: Invoice Payments Report
 
@@ -116,7 +118,8 @@ outputs and built automated tests to enforce them.  Once build was complete we
 did a final round of performance measurements and the result was a 1000%
 decrease in run time for the report.
 
-**Technologies Used**: Ruby on Rails, Typescript.
+**Technologies Used**: Ruby on Rails, Typescript, RSpec, Cypress, Jasmine,
+NodeJS.
 
 #### Project: Firm Dashboard
 
@@ -134,7 +137,8 @@ how jobs are processed in both parallel and in serial to allow us to strike the
 correct balance between the number of jobs running simultaneously and the length
 of each job on the system.
 
-**Technologies Used**: Ruby on Rails, Typescript.
+**Technologies Used**: Ruby on Rails, Typescript, RSpec, Cypress, Jasmine,
+NodeJS.
 
 ### SocialNature
 
@@ -157,8 +161,8 @@ communications rather than having to have a person manually manage email
 campaigns.
 
 **Technologies Used**: C#, Dotnet Core, ASP.NET MVC Core, Javascript, Angular,
-Amazon Linux, Amazon SQS, Bash/Cron, Amazon EC2, Amazon RDS, Amazon CodeDeploy,
-Jenkins.
+XUnit, NUnit, NodeJS, Jasmine, Amazon Linux, Amazon SQS, Bash/Cron, Amazon EC2,
+Amazon RDS, Amazon CodeDeploy, Jenkins.
 
 #### Project: ETL Framework
 
@@ -177,8 +181,8 @@ in Python
 Set up the build and deployment system, as well as configuration management
 using Jenkins, AWS, and Bash.
 
-**Technologies Used**: Python, PsycoPG2, SQL, Amazon Linux, Amazon SQS, Bash/Cron,
-Amazon EC2, Amazon RDS, Amazon CodeDeploy, Jenkins.
+**Technologies Used**: Python, PsycoPG2, Unittest, SQL, Amazon Linux,
+Amazon SQS, Bash/Cron, Amazon EC2, Amazon RDS, Amazon CodeDeploy, Jenkins.
 
 #### Project: socialnature.com
 
@@ -201,9 +205,9 @@ on social media websites.
 - Created and deployed interface A/B testing using Google Optimize, and later
   using a custom framework based on the event tracking system in C#.
 
-**Technologies Used**: C#, Dotnet Core, ASP.NET MVC Core, Javascript, jQuery,
-Google Optimize, Google Analytics, Amazon Linux, Amazon SQS, Bash/Cron, Amazon
-EC2, Amazon RDS, Amazon CodeDeploy, Jenkins
+**Technologies Used**: C#, Dotnet Core, ASP.NET MVC Core, Javascript, XUnit,
+NUnit, Jasmine, NodeJS, jQuery, Google Optimize, Google Analytics, Amazon Linux,
+Amazon SQS, Bash/Cron, Amazon EC2, Amazon RDS, Amazon CodeDeploy, Jenkins.
 
 ### Coho Data
 
@@ -258,7 +262,8 @@ factor authentication with FortiToken key fob and authenticator application.
 - Supported and mentored more junior team members in order to improve quality
   and readability of code.
 
-**Technologies Used**: Python, Django, JavaScript, SQL, C.
+**Technologies Used**: Python, Django, JavaScript, NodeJS, Nose, Unittest, SQL,
+C.
 
 ## Education
 
