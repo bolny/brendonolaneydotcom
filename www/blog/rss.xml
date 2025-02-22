@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<atom:link
+href="https://brendonolaney.com/blog/rss.xml"
+rel="self"
+type="application/rss+xml"
+/>
+<title>Brendon O'Laney</title>
+<description>Index</description>
+<link>https://brendonolaney.com/blog</link>
+<lastBuildDate>Fri, 21 Feb 2025 20:41:32 -0800</lastBuildDate>
+<managingEditor>
+brendon@brendonolaney.com Brendon O'Laney
+</managingEditor>
+<item>
+<guid>
+https://brendonolaney.com/blog/2023-07-27.html
+</guid>
+<link>
+https://brendonolaney.com/blog/2023-07-27.html
+</link>
+<pubdate>Thu Jul 27 20:41:32 PDT 2023</pubdate>
+<title>An email bridge for vintage computers</title>
+<description><![CDATA[
+<div class="blog">
+<p>I recently discovered a project called <a
+href="https://protoweb.org">Protoweb</a> which is an attempt to recreate
+the web as it existed in 1995. This was the time for me when I first got
+access to the internet over a blisteringly fast 33.6Kbaud modem so, of
+course, I needed to give it a try. However, it wasn’t enough for me to
+just browse on my shiny new computer with its anachronistically fast
+processor, no. I had to boot my favourite <a
+href="https://86box.net">x86 PC emulator</a>, install a copy of Windows
+95 and experience things as they were in 1995, less the headache
+inducing CRT monitor.</p>
+<p>Windows 95 is amazingly usable. I had quickly put it through its
+paces doing some basic tasks. I had quickly managed to listen to my copy
+of Big Shiny Tunes 2 in a period accurate version of Winamp, draft some
+prose in Word 95, generate a graph in Excel, make a basic presentation
+in PowerPoint, and even compile some console and GUI applications in
+Visual C++. Something was missing, however. Browsing the <em>modern</em>
+internet using Netscape Navigator 2 is strictly off the table since it
+doesn’t support modern cryptography. There are some <a
+href="http://frogfind.com">workarounds</a> for the browsing issue, and
+of course <a href="https://protoweb.org">Protoweb</a> is
+<em>amazing</em>, but I wasn’t able to find a good way to send or
+receive email.</p>
+<p>Netscape Communicator only supports insecure <a
+href="https://en.wikipedia.org/wiki/Post_Office_Protocol">POP3</a> and
+<a
+href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">SMTP</a>
+and, so far as I can tell, there are no current email providers that
+allow for this configuration (with good reason). But, certainly, I
+should be able to send and receive email insecurely from a computer on
+my local network that has all the modern cryptography necessary to
+forward that email securely to my normal provider right?</p>
+<p><img src="../img/2023-07-27-01.png" /></p>
+<p>All that I need to do to make this system (relatively) secure is
+configure the bridge to only accept incoming connections from the local
+network; 192.168.0.0/16 in my case. Alpine Linux is my usual go to for
+containers/virtual machines these days. In this case I decided to use a
+virtual machine because I find them easier to mess around with when
+prototyping and idea. After installing the base system I just need to
+install a few packages:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apk</span> add dovecot dovecot-pop3d isync postfix</span></code></pre></div>
+<p>Configure the dovecot server:
+<code>/etc/dovecot/dovecot.conf</code></p>
+<pre><code>protocols = pop3
+mail_location = maildir:/mail
+mail_privileged_group = mail
+auth_mechanisms = plain
+disable_plaintext_auth = no
+ssl = no
+pop3_client_workarounds = oe-ns-eoh outlook-no-nuls
+pop3_deleted_flag = popped
+pop3_delete_type = flag
+pop3_fast_size_lookups = no
+pop3_uidl_format = %08Xu%08Xv
+log_path = /var/log/dovecot.log
+
+passdb {
+driver = passwd-file
+args = scheme=PLAIN /etc/mailpasswd
+}
+
+userdb {
+driver = passwd-file
+args = /etc/mailpasswd
+}
+
+namespace inbox {
+inbox = yes
+separator = /
+}</code></pre>
+<p>Note here that the dovecot server will source its authentication from
+a file at <code>/etc/mailpasswd</code>. I like to make the username and
+password the same as the one I use to log in to the Alpine Linux VM
+because that’s how postfix authenticates. Doing it this way makes for a
+more consistent experience.</p>
+<p>The dovecot authentication file <code>/etc/mailpasswd</code>:</p>
+<pre><code>&lt;YOUR USERNAME&gt;:{PLAIN}&lt;YOUR PASSWORD&gt;:1000:1000::/home/&lt;YOUR USERNAME&gt;::userdb_mail=maildir:/home/&lt;YOUR USERNAME&gt;/mail/ allow_nets=192.168.0.0/16,local,127.0.0.1/32</code></pre>
+<p>With dovecot in place and configured, now you need to get your email
+into the maildir. For some reason the executable for the isync package
+is called mbsync. This is a pretty simple configuration that only syncs
+the last 100 messages in the inbox from your account. I created a file
+at <code>~/.mbsyncrc</code>:</p>
+<pre><code>IMAPAccount brendonolaney
+Host &lt;YOUR IMAP SERVER&gt;
+Port &lt;YOUR IMAP PORT&gt;
+UserCmd &quot;cat ~/.netrc | grep &#39;machine &lt;YOUR IMAP SERVER&gt;&#39; | awk &#39;FNR=1 {print $4}&#39;&quot;
+PassCmd &quot;cat ~/.netrc | grep &#39;machine &lt;YOUR IMAP SERVER&#39; | awk &#39;FNR=1 {print $6}&#39;&quot;
+SSLType IMAPS
+SSLVersions TLSv1.3
+
+IMAPStore remote
+Account &lt;YOUR ACCOUNT NAME&gt;
+
+MaildirStore local
+Path /home/&lt;YOUR LOCAL USER NAME&gt;/mail
+Inbox /home/&lt;YOUR LOCAL USER NAME&gt;/mail
+
+Channel inbox
+Far :remote:
+Near :local:
+MaxMessages 100
+Create Near
+SyncState *
+
+Group &lt;YOUR ACCOUNT NAME&gt;
+Channel inbox</code></pre>
+<p>For the <code>UserCmd</code> and <code>PassCmd</code> entries in the
+above configuration I created a <code>~/.netrc</code>:</p>
+<pre><code>machine &lt;YOUR EMAIL IMAP ADDRESS&gt; user &lt;YOUR EMAIL IMAP USERNAME&gt; pass &lt;YOUR EMAIL PASSWORD&gt;
+machine &lt;YOUR EMAIL SMTP ADDRESS&gt; user &lt;YOUR EMAIL SMTP USERNAME&gt; pass &lt;YOUR EMAIL PASSWORD&gt;</code></pre>
+<p>It’s best practice to make this file only readable by your user
+account: <code>chmod 0600 ~/.netrc</code>.</p>
+<p>Next we need to configure the postfix server with
+<code>/etc/postfix/main.cf</code>:</p>
+<pre><code>compatibility_level = 3.8
+queue_directory = /var/spoll/postfix
+command_directory = /usr/sbin
+daemon_directory = /usr/libexec/postfix
+data_directory = /var/lib/postfix
+mail_owner = postfix
+unknown_local_recipient_reject_code = 550
+debug_peer_level = 2
+debugger_command =
+  PATH=/bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin
+  ddd $daemon_directory/$process_name $process_id &amp; sleep 5
+sendmail_path = /usr/sbin/sendmail
+newaliases_path = /usr/bin/newaliases
+mailq_path = /usr/bin/mailq
+setgid_group = postdrop
+html_directory = no
+manpage_directory = /usr/share/man
+sample_directory = /etc/postfix
+readme_directory = /usr/share/doc/postfix/readme
+inet_protocols = ipv4
+meta_directory = /etc/postfix
+shlib_directory = /usr/lib/postfix
+
+smtp_sasl_auth_enable = yes
+smtp_tls_security_level = encrypt
+smtp_sasl_security_options = noanonymous
+mynetworks = 192.168.0.0/16
+smtp_password_maps = static:&lt;YOUR EMAIL USERNAME&gt;:&lt;YOUR EMAIL PASSWORD&gt;
+relayhost = &lt;YOUR SMTP SERVER&gt;:&lt;YOUR SMTP PORT&gt;</code></pre>
+<p>One last thing we need to do is configure isync to periodically fetch
+new messages from your email server by updating your cron file at
+<code>/etc/crontabs/&lt;YOUR USERNAME&gt;</code>:</p>
+<pre><code>*/1    *    *    *    *    mbsync -c ~/.mbsyncrc -a</code></pre>
+<p>Finally, all we need to do is add the dovecot and postfix services to
+Alpine’s launch daemons, and restart everything:</p>
+<pre><code>rc-update add dovecot
+rc-update add postfix
+rc-service dovecot restart
+rc-service crond restart
+rc-service postfix restart</code></pre>
+<p>Now all you should need to do is configure Netscape Communicator with
+your bridge’s IP address (run <code>ifconfig</code> on the bridge to get
+this), and the same username and password you use to log in to the
+bridge.</p>
+<p><img src="../img/2023-07-27-02.png" /></p>
+<p>Happy mailing!</p>
+</div>
+]]></description>
+</item>
+<item>
+<guid>
+https://brendonolaney.com/blog/2023-01-18.html
+</guid>
+<link>
+https://brendonolaney.com/blog/2023-01-18.html
+</link>
+<pubdate>Wed Jan 18 20:41:32 PST 2023</pubdate>
+<title>About this website</title>
+<description><![CDATA[
+<div class="blog">
+<p>I’m a bit sceptical about social media in general so a few years back
+I decided to create a place where I am fully in control of the content
+that can act as the one source of truth about me on the internet. My
+“web-home” as it were! I like to think that this site reflects how I
+like to approach things in both my personal life and in my work life. It
+is straight forward and uncomplicated. There is no flashy artwork,
+animations or technology here that didn’t exist in the 90s (A bit
+brutalist in my opinion) and that is by design to make it easy to
+maintain. Even the images have been very compressed to save on bandwidth
+as well as energy usage.</p>
+<p>Originally I had hosted this website using an operating system whose
+design and goals I really admire (OpenBSD), and a static site generator
+called Jekyll. I launched the site and promptly forgot about it since
+it’s one of those things I want to be there but to not have to think
+much about. A couple of months later I got a security alert on my Github
+account that a library I was using had a security vulnerability, so I
+had to take some time away from what I wanted to be doing that day to
+fix it. Some time later OpenBSD updated and I needed to learn how to do
+the upgrade.</p>
+<p>A lesson that I took away from that experience was that if I want
+this thing to actually run, be available all the time, and spend as
+little time as possible maintaining it, is to do the simplest thing
+possible. So I relaunched the server using Debian Stable as the
+operating system (I’ve been using Debian for about 20 years now so while
+I’m by no means an expert I have very little to learn to accomplish
+simple tasks), and re-wrote the site in plain HTML. In general I think
+software developers have a tendency to over-engineer things.</p>
+<p>Now all I have to to to keep this thing running is run a command
+every two years to update Debian. If I want to write new content I just
+edit an HTML file and commit it to git. As long as I keep paying the
+bills this thing should run forever.</p>
+<p>Update 2023-07-26: I transitioned to a makefile based build system to
+support the blog. It’s pretty simple compared to Jekyll and does exactly
+what I need it to.</p>
+</div>
+]]></description>
+</item>
+</channel>
+</rss>

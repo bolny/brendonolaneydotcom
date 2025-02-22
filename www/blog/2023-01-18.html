@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Brendon O’Laney" />
+    <meta name="dcterms.date" content="2023-01-18" />
+      <title>About this website</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<div class="header">
+  <h1>Brendon O’Laney</h1>
+  <h2>About this website</h2>
+      <p>2023-01-18<p>
+  </div>
+<div class="blog">
+<p>I’m a bit sceptical about social media in general so a few years back
+I decided to create a place where I am fully in control of the content
+that can act as the one source of truth about me on the internet. My
+“web-home” as it were! I like to think that this site reflects how I
+like to approach things in both my personal life and in my work life. It
+is straight forward and uncomplicated. There is no flashy artwork,
+animations or technology here that didn’t exist in the 90s (A bit
+brutalist in my opinion) and that is by design to make it easy to
+maintain. Even the images have been very compressed to save on bandwidth
+as well as energy usage.</p>
+<p>Originally I had hosted this website using an operating system whose
+design and goals I really admire (OpenBSD), and a static site generator
+called Jekyll. I launched the site and promptly forgot about it since
+it’s one of those things I want to be there but to not have to think
+much about. A couple of months later I got a security alert on my Github
+account that a library I was using had a security vulnerability, so I
+had to take some time away from what I wanted to be doing that day to
+fix it. Some time later OpenBSD updated and I needed to learn how to do
+the upgrade.</p>
+<p>A lesson that I took away from that experience was that if I want
+this thing to actually run, be available all the time, and spend as
+little time as possible maintaining it, is to do the simplest thing
+possible. So I relaunched the server using Debian Stable as the
+operating system (I’ve been using Debian for about 20 years now so while
+I’m by no means an expert I have very little to learn to accomplish
+simple tasks), and re-wrote the site in plain HTML. In general I think
+software developers have a tendency to over-engineer things.</p>
+<p>Now all I have to to to keep this thing running is run a command
+every two years to update Debian. If I want to write new content I just
+edit an HTML file and commit it to git. As long as I keep paying the
+bills this thing should run forever.</p>
+<p>Update 2023-07-26: I transitioned to a makefile based build system to
+support the blog. It’s pretty simple compared to Jekyll and does exactly
+what I need it to.</p>
+</div>
+<div class="footer">
+  <a href="./index.html">Back</a>
+  <a href="../index.html">Home</a>
+  <a href="./rss.xml">RSS</a>
+</div>
+</body>
+</html>
